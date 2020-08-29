@@ -1,0 +1,63 @@
+﻿
+@{
+    ViewBag.Title = "Add";
+}
+
+<div class="container">
+    <br /><br />
+    <div class="row">
+        <div class="col-md-6">
+            <h2>Add a new Customer </h2>
+
+        </div>
+        <div class="col-md-6">
+            <a href="/Customer/List" class="navbar-link">back to customer list</a>
+        </div>
+    </div>
+    <form id="addcustomer">
+
+        <div class="form-group">
+            <label>Name</label>
+            <input type="text" class="form-control" id="txtName" >
+        </div>
+        <div class="form-group">
+            <label>Email Id</label>
+            <input type="email" class="form-control"  id="txtEmailId">
+        </div>
+        <div class="form-group">
+            <label>Address</label>
+            <textarea class="form-control"  id="txtAddress"></textarea>
+        </div>
+
+        <button class="btn btn-primary" onclick="addcustomerDetails()" >Submit</button>
+    </form>
+
+</div>
+
+@section scripts{
+
+    <script type="text/javascript">
+
+        function addcustomerDetails() {
+            $.ajax({
+                type: "POST",
+                url: "/Customer/AddCustomer",
+                data: {
+                    Name: $("#txtName").val(),
+                    EmailId: $("#txtEmailId").val(),
+                    Address: $("#txtAddress").val()
+                },
+                dataType: "json",
+                success: function (r) {
+
+                }
+            });
+
+        }
+
+    </script>
+    
+    
+    
+    
+}

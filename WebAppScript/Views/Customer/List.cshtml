@@ -1,0 +1,56 @@
+﻿
+@{
+    ViewBag.Title = "List";
+}
+
+
+<div class="container">
+    <br />
+    <div class="row">
+        <div class="col-md-6">
+            <h2>Customer List</h2>
+        </div>
+        <div class="col-md-6 text-ri">
+            <br />
+            <a href="/Customer/Add" class="btn btn-primary">New Customer</a>
+         
+        </div>
+    </div>
+    
+
+    <table id="customerTable" class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Names</th>
+                <th>Email Id</th>
+                <th>Address</th>
+            </tr>
+        </thead>
+    </table>
+
+</div>
+
+@section scripts{
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#customerTable').DataTable({
+                "ajax": {
+                    "url": "/Customer/GetCustomerList",
+                    "type": "GET",
+                    "datatype": "json"
+                },
+                "columns": [
+                    { "data": "Id", "autowidth": true },
+                    { "data": "Name", "autowidth": true },
+                    { "data": "EmailId", "autowidth": true },
+                    { "data": "Address", "autowidth": true }
+                ]
+            });
+        });
+
+    </script>
+    
+
+}
